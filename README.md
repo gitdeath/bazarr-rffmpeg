@@ -1,5 +1,5 @@
 # bazarr-rffmpeg
-linuxserver/bazarr with rffmpeg
+[Bazarr](https://hub.docker.com/r/linuxserver/bazarr) from Linuxserver with [rffmpeg](https://github.com/joshuaboniface/rffmpeg) included.
 
 The public ssh key is located inside the container at `/config/rffmpeg/.ssh/id_rsa.pub`
 The known_hosts file is located inside the container at `/config/rffmpeg/.ssh/known_hosts`
