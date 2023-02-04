@@ -1,9 +1,6 @@
 FROM linuxserver/bazarr:latest
 
-RUN apt-get -y update
-
-RUN apt update && \
-    apt install --no-install-recommends --no-install-suggests -y openssh-client python3-click python3-yaml wget 
+RUN apk add --no-cache openssh-client py3-click py3-yaml wget
     
 RUN mkdir -p /usr/local/bin && \
     wget https://raw.githubusercontent.com/joshuaboniface/rffmpeg/master/rffmpeg -O /usr/local/bin/rffmpeg && \
@@ -39,9 +36,5 @@ RUN usermod -a -G users root
 
 RUN sed -i 's;#   IdentityFile ~/.ssh/id_rsa;   IdentityFile /config/rffmpeg/.ssh/id_rsa;' /etc/ssh/ssh_config && \
     sed -i 's;#   UserKnownHostsFile ~/.ssh/known_hosts.d/%k;   UserKnownHostsFile /config/rffmpeg/.ssh/known_hosts;' /etc/ssh/ssh_config 
-    
-RUN apt purge wget -y && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt autoremove --purge -y && \
-    apt clean
+
     
