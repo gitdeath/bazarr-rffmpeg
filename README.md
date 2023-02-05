@@ -1,4 +1,5 @@
-NOT YET WORKING
+Testing / non-prod
+
 # bazarr-rffmpeg
 [Bazarr](https://hub.docker.com/r/linuxserver/bazarr) from Linuxserver with [rffmpeg](https://github.com/joshuaboniface/rffmpeg) included.
 
