@@ -32,7 +32,9 @@ RUN /usr/local/bin/rffmpeg init -y && \
     chmod 700 /config/rffmpeg/.ssh && \
     ssh-keygen -t rsa -f /config/rffmpeg/.ssh/id_rsa -q -N ""
 
-RUN mkdir -p /root/.ssh
+RUN mkdir -p /root/.ssh && \
+    mkdir -p /sshpersist && \
+    chown abc /sshpersist
 
 RUN usermod -a -G users root
 
