@@ -5,8 +5,10 @@ RUN apk add --no-cache openssh-client py3-click py3-yaml wget
 RUN mkdir -p /usr/local/bin && \
     wget https://raw.githubusercontent.com/joshuaboniface/rffmpeg/master/rffmpeg -O /usr/local/bin/rffmpeg && \
     chmod +x /usr/local/bin/rffmpeg && \
-    ln -s /usr/local/bin/rffmpeg /usr/local/bin/ffmpeg && \
-    ln -s /usr/local/bin/rffmpeg /usr/local/bin/ffprobe
+    rm /usr/bin/ffmpeg && \
+    rm /usr/bin/ffprobe && \
+    ln -s /usr/local/bin/rffmpeg /usr/bin/ffmpeg && \
+    ln -s /usr/local/bin/rffmpeg /usr/bin/ffprobe
     
 RUN mkdir -p /config/rffmpeg && \
     wget https://raw.githubusercontent.com/joshuaboniface/rffmpeg/master/rffmpeg.yml.sample -O /config/rffmpeg/rffmpeg.yml && \
@@ -20,9 +22,7 @@ RUN mkdir -p /config/rffmpeg && \
     sed -i 's;#user: jellyfin;user: root;' /config/rffmpeg/rffmpeg.yml && \
     sed -i 's;#args:;args:;' /config/rffmpeg/rffmpeg.yml && \
     sed -i 's;#    - "-i";    - "-i";' /config/rffmpeg/rffmpeg.yml && \
-    sed -i 's;#    - "/var/lib/jellyfin/id_rsa";    - "/config/rffmpeg/.ssh/id_rsa";' /config/rffmpeg/rffmpeg.yml && \
-    sed -i 's;#fallback_ffmpeg: "/usr/lib/jellyfin-ffmpeg/ffmpeg";fallback_ffmpeg: "/usr/bin/ffmpeg";' /config/rffmpeg/rffmpeg.yml && \
-    sed -i 's;#fallback_ffprobe: "/usr/lib/jellyfin-ffmpeg/ffprobe";fallback_ffprobe: "/usr/bin/ffprobe";' /config/rffmpeg/rffmpeg.yml
+    sed -i 's;#    - "/var/lib/jellyfin/id_rsa";    - "/config/rffmpeg/.ssh/id_rsa";' /config/rffmpeg/rffmpeg.yml 
     
 RUN mkdir -p /etc/rffmpeg && \
     ln -s /config/rffmpeg/rffmpeg.yml /etc/rffmpeg/rffmpeg.yml
