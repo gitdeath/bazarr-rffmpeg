@@ -34,7 +34,8 @@ RUN /usr/local/bin/rffmpeg init -y && \
 
 RUN mkdir -p /root/.ssh && \
     mkdir -p /sshpersist && \
-    chown 1000 /sshpersist
+    chgrp user /sshpersist && \
+    chmod 664 /sshpersist
 
 RUN usermod -a -G users root
 
